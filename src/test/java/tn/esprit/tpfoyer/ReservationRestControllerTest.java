@@ -1,11 +1,10 @@
 package tn.esprit.tpfoyer;
 
-
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import tn.esprit.tpfoyer.control.ReservationRestController;
 import tn.esprit.tpfoyer.entity.Reservation;
 import tn.esprit.tpfoyer.service.IReservationService;
@@ -13,7 +12,6 @@ import tn.esprit.tpfoyer.service.IReservationService;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -31,6 +29,10 @@ class ReservationRestControllerTest {
 
     @BeforeEach
     void setUp() {
+        // Initialize mocks
+        MockitoAnnotations.openMocks(this);
+
+        // Initialize test data
         reservation1 = new Reservation("R1", new Date(), true, null);
         reservation2 = new Reservation("R2", new Date(), false, null);
     }
@@ -100,5 +102,4 @@ class ReservationRestControllerTest {
         assertNotNull(result);
         assertEquals("R1", result.getIdReservation());
     }
-
 }
